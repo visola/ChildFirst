@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet id="Create user and auth tables" author="visola">
+    <createTable tableName="simple_granted_authority">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="authority" type="varchar(50)" />
+    </createTable>
+
+    <createTable tableName="user">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="firstname" type="varchar(50)" />
+      <column name="lastname" type="varchar(50)" />
+      <column name="email" type="varchar(250)" />
+      <column name="disabled" type="datetime" />
+      <column name="expires_on" type="datetime" />
+      <column name="locked_on" type="datetime" />
+    </createTable>
+
+    <createTable tableName="user_authorities">
+      <column name="user_id" type="int" />
+      <column name="authorities_id" type="int" />
+    </createTable>
+
+    <addPrimaryKey
+        tableName="user_authorities"
+        columnNames="user_id, authorities_id"
+        constraintName="pk_user_auth" />
+
+    <addForeignKeyConstraint
+        baseColumnNames="user_id"
+        baseTableName="user_authorities"
+        constraintName="fk_user_user_authorities"
+        referencedColumnNames="id"
+        referencedTableName="user" />
+
+    <addForeignKeyConstraint
+        baseColumnNames="authorities_id"
+        baseTableName="user_authorities"
+        constraintName="fk_authority_user_authorities"
+        referencedColumnNames="id"
+        referencedTableName="simple_granted_authority" />
+
+    <insert tableName="simple_granted_authority">
+      <column name="authority" value="ROLE_PARENT" />
+    </insert>
+    <insert tableName="simple_granted_authority">
+      <column name="authority" value="ROLE_TEACHER" />
+    </insert>
+    <insert tableName="simple_granted_authority">
+      <column name="authority" value="ROLE_ADMIN" />
+    </insert>
+  </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,111 @@
+package org.visola.childfirst.model;
+
+import java.util.Calendar;
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import org.springframework.security.core.userdetails.UserDetails;
+
+@Entity
+public class User implements UserDetails {
+
+  private static final long serialVersionUID = 1L;
+
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Id
+  private Integer id;
+
+  private String email;
+  private Calendar expiresOn;
+  private Calendar lockedOn;
+  private Calendar disabled;
+
+  @ManyToMany(fetch=FetchType.EAGER)
+  private Collection<SimpleGrantedAuthority> authorities;
+
+  @Override
+  public Collection<SimpleGrantedAuthority> getAuthorities() {
+    return authorities;
+  }
+
+  public Calendar getDisabled() {
+    return disabled;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public Calendar getExpiresOn() {
+    return expiresOn;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public Calendar getLockedOn() {
+    return lockedOn;
+  }
+
+  @Override
+  public String getPassword() {
+    return "";
+  }
+
+  @Override
+  public String getUsername() {
+    return getEmail();
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return expiresOn == null || expiresOn.before(Calendar.getInstance());
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return lockedOn == null || lockedOn.before(Calendar.getInstance());
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return disabled == null || disabled.after(Calendar.getInstance());
+  }
+
+  public void setAuthorities(Collection<SimpleGrantedAuthority> authorities) {
+    this.authorities = authorities;
+  }
+
+  public void setDisabled(Calendar disabled) {
+    this.disabled = disabled;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setExpiresOn(Calendar expiresOn) {
+    this.expiresOn = expiresOn;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public void setLockedOn(Calendar lockedOn) {
+    this.lockedOn = lockedOn;
+  }
+
+}

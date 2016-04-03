@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <script th:inline="javascript">
+    localStorage.email = /*[[${email}]]*/'';
+    localStorage.expires = /*[[${expires}]]*/'';
+    localStorage.token = /*[[${token}]]*/'';
+
+    window.location = /*[[${path}]]*/'';
+  </script>
+</html>

@@ -1,0 +1,24 @@
+liquibase.change-log: classpath:/db/migrations.xml
+
+logging.level.org.hibernate.SQL: DEBUG
+
+oauth:
+  google:
+    redirectUri: http://localhost:8080/authenticate/oauth2callback
+    scopes: email
+
+security.token.filter.secret: MyVeryLongSecretIsNotThatLongButItShouldBe
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/childfirst
+    username: postgres
+    password: admin
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    properties:
+      hibernate.globally_quoted_identifiers: true
