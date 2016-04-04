@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +18,7 @@ public class User implements UserDetails {
   private static final long serialVersionUID = 1L;
   private static final List<? extends GrantedAuthority> EMPTY_LIST = new ArrayList<>();
 
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue
   @Id
   private Integer id;
 

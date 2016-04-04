@@ -23,7 +23,7 @@ dependencies {
   compile 'org.visola.spring.security:spring-security-token-filter-spring-boot-starter:1.1'
 
   runtime 'com.zaxxer:HikariCP'
+  runtime 'mysql:mysql-connector-java:5.1.38'
   runtime 'org.liquibase:liquibase-core'
-  runtime 'org.postgresql:postgresql:9.4-1201-jdbc41'
   runtime 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }

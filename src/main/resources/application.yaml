@@ -11,10 +11,9 @@ security.token.filter.secret: MyVeryLongSecretIsNotThatLongButItShouldBe
 
 spring:
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/childfirst
-    username: postgres
-    password: admin
+    url: jdbc:mysql://localhost:3306/ChildFirst?autoReconnect=true&useSSL=false
+    username: root
+    password: 12345678
 
   jpa:
     hibernate:
