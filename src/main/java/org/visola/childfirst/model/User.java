@@ -1,21 +1,23 @@
 package org.visola.childfirst.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 public class User implements UserDetails {
 
   private static final long serialVersionUID = 1L;
+  private static final List<? extends GrantedAuthority> EMPTY_LIST = new ArrayList<>();
 
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Id
@@ -26,12 +28,9 @@ public class User implements UserDetails {
   private Calendar lockedOn;
   private Calendar disabled;
 
-  @ManyToMany(fetch=FetchType.EAGER)
-  private Collection<SimpleGrantedAuthority> authorities;
-
   @Override
-  public Collection<SimpleGrantedAuthority> getAuthorities() {
-    return authorities;
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return EMPTY_LIST;
   }
 
   public Calendar getDisabled() {
@@ -82,10 +81,6 @@ public class User implements UserDetails {
   @Override
   public boolean isEnabled() {
     return disabled == null || disabled.after(Calendar.getInstance());
-  }
-
-  public void setAuthorities(Collection<SimpleGrantedAuthority> authorities) {
-    this.authorities = authorities;
   }
 
   public void setDisabled(Calendar disabled) {
