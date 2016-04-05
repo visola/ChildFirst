@@ -3,6 +3,7 @@ require.config({
   paths: {
     "backbone": "https://cdn.jsdelivr.net/backbonejs/1.3.2/backbone-min",
     "bootstrap" : "https://cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min",
+    "i18n" : "https://cdn.jsdelivr.net/requirejs.i18n/2.0.4/i18n",
     "jquery" : "https://cdn.jsdelivr.net/jquery/2.2.1/jquery.min",
     "moment" : "https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min",
     "handlebars" : "https://cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.amd.min",
