@@ -23,8 +23,8 @@ define(["jquery", "backbone", "security"],
       },
 
       login : function () {
-        require(["tpl!template/login.html"], function (LoginTemplate) {
-          getContentElement().innerHTML = LoginTemplate();
+        require(["hbars!template/login", 'i18n!nls/strings'], function (LoginTemplate, strings) {
+          getContentElement().innerHTML = LoginTemplate({strings:strings, window:window});
         });
       },
 
