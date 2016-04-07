@@ -21,8 +21,10 @@ public class User implements UserDetails {
   @GeneratedValue
   @Id
   private Integer id;
-
   private String email;
+  private String firstName;
+  private String lastName;
+  private boolean admin;
   private Calendar expiresOn;
   private Calendar lockedOn;
   private Calendar disabled;
@@ -44,8 +46,16 @@ public class User implements UserDetails {
     return expiresOn;
   }
 
+  public String getFirstName() {
+    return firstName;
+  }
+
   public Integer getId() {
     return id;
+  }
+
+  public String getLastName() {
+    return lastName;
   }
 
   public Calendar getLockedOn() {
@@ -72,6 +82,10 @@ public class User implements UserDetails {
     return lockedOn == null || lockedOn.before(Calendar.getInstance());
   }
 
+  public boolean isAdmin() {
+    return admin;
+  }
+
   @Override
   public boolean isCredentialsNonExpired() {
     return true;
@@ -80,6 +94,10 @@ public class User implements UserDetails {
   @Override
   public boolean isEnabled() {
     return disabled == null || disabled.after(Calendar.getInstance());
+  }
+
+  public void setAdmin(boolean admin) {
+    this.admin = admin;
   }
 
   public void setDisabled(Calendar disabled) {
@@ -94,8 +112,16 @@ public class User implements UserDetails {
     this.expiresOn = expiresOn;
   }
 
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
   public void setId(Integer id) {
     this.id = id;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
   public void setLockedOn(Calendar lockedOn) {

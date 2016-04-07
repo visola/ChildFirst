@@ -14,8 +14,9 @@
       <column name="email" type="varchar(250)">
         <constraints nullable="false" />
       </column>
-      <column name="firstname" type="varchar(50)" />
-      <column name="lastname" type="varchar(50)" />
+      <column name="first_name" type="varchar(50)" />
+      <column name="last_name" type="varchar(50)" />
+      <column name="admin" type="boolean" />
       <column name="disabled" type="datetime" />
       <column name="expires_on" type="datetime" />
       <column name="locked_on" type="datetime" />
