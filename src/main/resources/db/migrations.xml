@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-  <changeSet id="Create user and auth tables" author="visola">
+  <changeSet id="Create user table" author="visola">
     <createTable tableName="user">
       <column name="id" type="int" autoIncrement="true">
         <constraints primaryKey="true" nullable="false" />
