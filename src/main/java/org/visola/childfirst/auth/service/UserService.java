@@ -1,4 +1,4 @@
-package org.visola.childfirst.service;
+package org.visola.childfirst.auth.service;
 
 import java.util.Optional;
 
@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.visola.childfirst.model.User;
-import org.visola.childfirst.repository.UserRepository;
+import org.visola.childfirst.auth.model.User;
+import org.visola.childfirst.auth.repository.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {

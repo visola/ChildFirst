@@ -1,4 +1,4 @@
-package org.visola.childfirst.controller;
+package org.visola.childfirst.auth.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.visola.childfirst.model.User;
-import org.visola.childfirst.service.UserService;
+import org.visola.childfirst.auth.model.User;
+import org.visola.childfirst.auth.service.UserService;
 import org.visola.spring.security.tokenfilter.TokenService;
 
 import com.fasterxml.jackson.databind.JsonNode;

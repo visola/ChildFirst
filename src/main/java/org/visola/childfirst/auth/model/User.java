@@ -1,4 +1,4 @@
-package org.visola.childfirst.model;
+package org.visola.childfirst.auth.model;
 
 import java.util.ArrayList;
 import java.util.Calendar;
