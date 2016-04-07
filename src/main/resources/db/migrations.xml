@@ -22,4 +22,27 @@
     </createTable>
   </changeSet>
 
+  <changeSet id="Create school table" author="visola">
+    <createTable tableName="school">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="name" type="varchar(250)">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_by" type="int">
+        <constraints nullable="false" foreignKeyName="school_created_by" referencedTableName="user" referencedColumnNames="id"/>
+      </column>
+      <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+        <constraints nullable="false" />
+      </column>
+      <column name="updated_by" type="int">
+        <constraints nullable="false" foreignKeyName="school_updated_by" referencedTableName="user" referencedColumnNames="id"/>
+      </column>
+      <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+
 </databaseChangeLog>
