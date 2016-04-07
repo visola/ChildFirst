@@ -118,7 +118,6 @@ public class GoogleOAuthController {
       user = maybeUser.get();
     }
 
-    mv.addObject("email", email);
     mv.addObject("token", tokenService.generateToken(new UsernamePasswordAuthenticationToken(user, "")));
     mv.addObject("path", split[1]);
     return mv;

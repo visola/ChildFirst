@@ -1,10 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
   <script th:inline="javascript">
-    localStorage.email = /*[[${email}]]*/'';
-    localStorage.expires = /*[[${expires}]]*/'';
-    localStorage.token = /*[[${token}]]*/'';
+    (function () {
+      var t = /*[[${token}]]*/'',
+        parsed = JSON.parse(atob(t.split('.')[1]));
 
-    window.location = /*[[${path}]]*/'';
+      localStorage.token = t;
+      localStorage.email = parsed.sub;
+      localStorage.expires = parsed.exp * 1000;
+
+      window.location = /*[[${path}]]*/'';
+    })();
   </script>
 </html>
