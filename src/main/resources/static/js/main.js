@@ -16,6 +16,7 @@ require.config({
   waitSeconds: 0
 });
 
-require(['router'], function (router) {
+require(['router', 'HandlebarsHelpers'], function (router, HandlebarsHelpers) {
+  HandlebarsHelpers.registerHelpers();
   Backbone.history.start({pushState: true});
 });

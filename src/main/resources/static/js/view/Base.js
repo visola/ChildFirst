@@ -1,4 +1,4 @@
-define(['underscore', 'jquery', 'backbone', 'router', 'moment', 'i18n!nls/strings'], function (_, $, Backbone, router, moment, strings) {
+define(['underscore', 'jquery', 'backbone', 'router', 'moment'], function (_, $, Backbone, router, moment) {
   var BaseView = Backbone.View.extend({
     data: {},
 
@@ -22,8 +22,7 @@ define(['underscore', 'jquery', 'backbone', 'router', 'moment', 'i18n!nls/string
       return _.extend({
         collection: this.collection,
         model: this.model,
-        moment: moment,
-        strings: strings
+        moment: moment
       }, this.data);
     },
 
