@@ -13,6 +13,12 @@ require.config({
     "text" : "https://cdn.jsdelivr.net/requirejs.text/2.0.12/text.min",
     "tpl": "lib/tpl",
   },
+  shim: {
+    'bootstrap': {
+      deps: ['jquery'],
+      exports: 'bootstrap'
+    }
+  },
   waitSeconds: 0
 });
 

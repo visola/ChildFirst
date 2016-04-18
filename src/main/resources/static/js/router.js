@@ -1,5 +1,5 @@
-define(["jquery", "backbone", "security"],
-  function ($, Backbone, Security, MenuTemplate) {
+define(["jquery", "backbone", "security", "bootstrap"],
+  function ($, Backbone, Security, Bootstrap) {
     var originalRoute = Backbone.Router.prototype.route;
 
     function getContentElement() {
@@ -7,13 +7,26 @@ define(["jquery", "backbone", "security"],
     };
 
     function render(view) {
+      renderMenu();
       view.render();
       $(getContentElement()).html(view.$el);
     };
 
+    function renderMenu() {
+      var $menu = $('#menu').empty();
+      require(['view/TopMenu'], function (TopMenuView) {
+        var topMenuView = new TopMenuView();
+        topMenuView.render();
+        $menu.html(topMenuView.$el)
+          .find('ul .nav')
+          .dropdown();
+      })
+    };
+
     var Router = Backbone.Router.extend({
       routes : {
-        "(/)" : "home"
+        "(/)" : "home",
+        "logout(/)" : "logout"
       },
 
       home : function () {
@@ -24,8 +37,15 @@ define(["jquery", "backbone", "security"],
 
       login : function () {
         require(["hbars!template/login", 'i18n!nls/strings'], function (LoginTemplate, strings) {
+          renderMenu();
           getContentElement().innerHTML = LoginTemplate({strings:strings, window:window});
         });
+      },
+
+      logout: function () {
+        Security.logout();
+        this.navigate('/');
+        this.login();
       },
 
       route : function (route, name, callback) {

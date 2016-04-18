@@ -17,6 +17,11 @@ define(['jquery'], function ($) {
     },
     isLoggedIn : function () {
       return storageAuth.token != null;
+    },
+    logout: function () {
+      storageAuth = {};
+      delete this.user;
+      delete localStorage.token;
     }
   };
 
