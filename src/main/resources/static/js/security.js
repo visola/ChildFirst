@@ -11,6 +11,7 @@ define(['jquery'], function ($) {
   }
 
   var Security = {
+    user: storageAuth.token == null ? null : JSON.parse(atob(storageAuth.token.split('.')[1])),
     getUserEmail: function () {
       return storageAuth.email;
     },
