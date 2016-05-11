@@ -34,13 +34,13 @@
       <column name="created_by" type="int">
         <constraints nullable="false" foreignKeyName="school_created_by" referencedTableName="user" referencedColumnNames="id"/>
       </column>
-      <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+      <column name="created" type="datetime">
         <constraints nullable="false" />
       </column>
       <column name="updated_by" type="int">
         <constraints nullable="false" foreignKeyName="school_updated_by" referencedTableName="user" referencedColumnNames="id"/>
       </column>
-      <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+      <column name="updated" type="datetime">
         <constraints nullable="false" />
       </column>
     </createTable>
