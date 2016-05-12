@@ -1,26 +1,31 @@
-define(["jquery", "backbone", "security", "bootstrap"],
-  function ($, Backbone, Security, Bootstrap) {
+define(["jquery", "backbone", 'HandlebarsHelpers', "security", "bootstrap", "view/Application"],
+  function ($, Backbone, HandlebarsHelpers, Security, Bootstrap, ApplicationView) {
     var originalRoute = Backbone.Router.prototype.route;
+    var appView = new ApplicationView();
+
+    HandlebarsHelpers.registerHelpers();
+
+    function addMenu() {
+      if (!appView.hasView('menu')) {
+        return;
+      }
+
+      require(['view/TopMenu'], function (TopMenuView) {
+        var topMenuView = new TopMenuView();
+        appView.setView('menu', topMenuView);
+        appView.render();
+      })
+    };
 
     function getContentElement() {
       return document.getElementById('content');
     };
 
     function render(view) {
-      renderMenu();
-      view.render();
-      $(getContentElement()).html(view.$el);
-    };
-
-    function renderMenu() {
-      var $menu = $('#menu').empty();
-      require(['view/TopMenu'], function (TopMenuView) {
-        var topMenuView = new TopMenuView();
-        topMenuView.render();
-        $menu.html(topMenuView.$el)
-          .find('ul .nav')
-          .dropdown();
-      })
+      addMenu();
+      appView.setView('content', view);
+      appView.render();
+      $('body').html(appView.$el);
     };
 
     var Router = Backbone.Router.extend({
@@ -36,9 +41,8 @@ define(["jquery", "backbone", "security", "bootstrap"],
       },
 
       login : function () {
-        require(["hbars!template/login", 'i18n!nls/strings'], function (LoginTemplate, strings) {
-          renderMenu();
-          getContentElement().innerHTML = LoginTemplate({strings:strings, window:window});
+        require(["view/Login"], function (LoginView) {
+          render(new LoginView());
         });
       },
 
@@ -50,7 +54,6 @@ define(["jquery", "backbone", "security", "bootstrap"],
 
       route : function (route, name, callback) {
         if (Security.isLoggedIn()) {
-          getContentElement().innerHTML = '<p>Loading...</p>';
           originalRoute.call(this, route, name, callback);
         } else {
           this.login();

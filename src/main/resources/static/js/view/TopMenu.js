@@ -6,8 +6,12 @@ define(['view/Base', 'security', 'hbars!template/topMenu'], function (BaseView, 
 
     initialize: function () {
       this.data = {
-        user: Security.user
+          Security: Security
       };
+    },
+
+    postAppend: function () {
+      this.$('ul .nav').dropdown();
     }
   });
 
