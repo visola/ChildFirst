@@ -1,3 +1,5 @@
+api.base.path: /api/v1
+
 liquibase.change-log: classpath:/db/migrations.xml
 
 logging.level.org.hibernate.SQL: DEBUG

@@ -28,7 +28,7 @@ define(['jquery'], function ($) {
   if (Security.isLoggedIn()) {
     $.ajaxSetup({
       beforeSend: function (xhr) {
-        xhr.setRequestHeader("X-Auth-Token", storageAuth.token);
+        xhr.setRequestHeader("Authorization", "Bearer " + storageAuth.token);
       }
     });
   }
