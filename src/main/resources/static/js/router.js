@@ -31,7 +31,8 @@ define(["jquery", "backbone", 'HandlebarsHelpers', "security", "bootstrap", "vie
     var Router = Backbone.Router.extend({
       routes : {
         "(/)" : "home",
-        "logout(/)" : "logout"
+        "logout(/)" : "logout",
+        "schools(/)" : "schools"
       },
 
       home : function () {
@@ -50,6 +51,12 @@ define(["jquery", "backbone", 'HandlebarsHelpers', "security", "bootstrap", "vie
         Security.logout();
         this.navigate('/');
         this.login();
+      },
+
+      schools: function () {
+        require(["view/school/List"], function (SchoolsView) {
+          render(new SchoolsView());
+        });
       },
 
       route : function (route, name, callback) {
