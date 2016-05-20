@@ -1,7 +1,9 @@
+/application.yaml
 build/
 bin/
 .classpath
 .gradle/
+node_modules/
 .project
 .settings/
 target/
