@@ -33,10 +33,22 @@ dependencies {
   runtime 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
+sourceSets {
+  main {
+    resources {
+      srcDir "${buildDir}/node"
+    }
+  }
+}
+
 bootRun {
   addResources = false
 }
 
 task javaScriptTranspile (type: NpmTask) {
   args = ['run', 'build']
+  inputs.dir file("src/main/js")
+  outputs.dir file("${buildDir}/node")
 }
+
+processResources.dependsOn javaScriptTranspile

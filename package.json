@@ -2,7 +2,7 @@
   "name": "ChildFirst",
   "version": "1.0.0",
   "scripts": {
-    "build": "babel src/main/js -d build/static/js"
+    "build": "babel src/main/js -d build/node/static/js"
   },
   "devDependencies": {
     "babel-cli": "^6.0.0",
