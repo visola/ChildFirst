@@ -1,15 +1,20 @@
 buildscript {
-    repositories {
-        mavenCentral()
+  repositories {
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
     }
-    dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
-    }
+  }
+  dependencies {
+    classpath "com.moowork.gradle:gradle-node-plugin:0.12"
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
+  }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+apply plugin: 'com.moowork.node'
 
 repositories {
   mavenCentral()
@@ -27,3 +32,23 @@ dependencies {
   runtime 'org.liquibase:liquibase-core'
   runtime 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
+
+sourceSets {
+  main {
+    resources {
+      srcDir "${buildDir}/node"
+    }
+  }
+}
+
+bootRun {
+  addResources = false
+}
+
+task javaScriptTranspile (type: NpmTask) {
+  args = ['run', 'build']
+  inputs.dir file("src/main/js")
+  outputs.dir file("${buildDir}/node")
+}
+
+processResources.dependsOn javaScriptTranspile
