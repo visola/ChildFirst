@@ -19,4 +19,8 @@ public class SchoolService {
     return schoolRepository.findAll();
   }
 
+  public School findOne(Integer schoolId) {
+    return schoolRepository.findOne(schoolId);
+  }
+
 }
