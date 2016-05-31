@@ -3,6 +3,8 @@ build/
 bin/
 .classpath
 .gradle/
+.idea/
+*.iml
 node_modules/
 .project
 .settings/
