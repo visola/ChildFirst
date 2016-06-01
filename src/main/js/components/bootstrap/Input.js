@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-export default class InputElement extends React.Component {
+export default class Input extends React.Component {
 
   state = {
     value : this.props.value || ''

@@ -23,4 +23,8 @@ public class SchoolService {
     return schoolRepository.findOne(schoolId);
   }
 
+  public School save(School school) {
+    return schoolRepository.save(school);
+  }
+
 }

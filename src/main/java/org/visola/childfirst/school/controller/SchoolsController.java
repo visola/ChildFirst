@@ -26,4 +26,9 @@ public class SchoolsController {
     return schoolService.findOne(id);
   }
 
+  @RequestMapping(method=RequestMethod.PUT, value="/{id}")
+  public School updateSchool(@RequestBody School school) {
+    return schoolService.save(school);
+  }
+
 }
