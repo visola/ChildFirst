@@ -1,7 +1,9 @@
 package org.visola.childfirst.school.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.visola.childfirst.auth.model.User;
 import org.visola.childfirst.school.model.School;
 import org.visola.childfirst.school.service.SchoolService;
 
@@ -26,9 +28,14 @@ public class SchoolsController {
     return schoolService.findOne(id);
   }
 
+  @RequestMapping(method=RequestMethod.POST)
+  public School createSchool(@RequestBody School school, @AuthenticationPrincipal User user) {
+    return schoolService.save(school, user);
+  }
+
   @RequestMapping(method=RequestMethod.PUT, value="/{id}")
-  public School updateSchool(@RequestBody School school) {
-    return schoolService.save(school);
+  public School updateSchool(@RequestBody School school, @AuthenticationPrincipal User user) {
+    return schoolService.save(school, user);
   }
 
 }

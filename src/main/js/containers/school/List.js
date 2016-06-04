@@ -25,6 +25,9 @@ export default class List extends React.Component {
   render () {
     return <div>
       <h2><I18n string="title_schools" /></h2>
+      <div className="btn-group">
+        <Link href={`/schools/new`} className="btn btn-primary"><I18n string="button_create_new" /></Link>
+      </div>
       <table className="table table-striped table-hover">
         <thead>
           <tr>

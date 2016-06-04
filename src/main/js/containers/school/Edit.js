@@ -9,14 +9,16 @@ export default class Edit extends React.Component {
 
   state = {
     name: '',
-    school: new School({id:this.props.schoolId})
+    school: this.props.schoolId == 'new' ? new School() : new School({id:this.props.schoolId})
   }
 
   constructor (props) {
     super(props);
 
-    this.state.school.fetch()
-      .then(this.handleLoaded.bind(this));
+    if (!this.state.school.isNew()) {
+      this.state.school.fetch()
+        .then(this.handleLoaded.bind(this));
+    }
   }
 
   handleLoaded () {
@@ -36,8 +38,9 @@ export default class Edit extends React.Component {
   }
 
   render () {
+    let titleString = this.state.school.isNew() ? "new_school" : "edit_school";
     return <div>
-      <h2><I18n string="edit_school" name={this.state.name} /></h2>
+      <h2><I18n string={titleString} name={this.state.name} /></h2>
       <form onSubmit={this.handleSubmit.bind(this)}>
         <Input
           label="Name"
