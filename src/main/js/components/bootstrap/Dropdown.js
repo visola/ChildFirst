@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Dropdown extends React.Component {
 
@@ -7,9 +8,26 @@ export default class Dropdown extends React.Component {
     toggle: false
   }
 
+  constructor(props) {
+    super(props);
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    document.addEventListener('click', this.handleDocumentClick, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDocumentClick, true);
+  }
+
   handleClick(e) {
     e.preventDefault();
     this.setState({toggle: !this.state.toggle});
+  }
+
+  handleDocumentClick(e) {
+    let domNode = ReactDOM.findDOMNode(this);
+    if (domNode && domNode.firstChild && !domNode.firstChild.contains(e.target)) {
+      this.setState({toggle: false});
+    }
   }
 
   render () {
