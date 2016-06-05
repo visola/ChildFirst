@@ -7,8 +7,9 @@ import Link from 'components/Link';
 export default class DropdownItem extends React.Component {
 
   render () {
+    let path = window.location.pathname;
     let icon = this.props.icon ? <i className={this.props.icon}></i> : null;
-    return <li>
+    return <li className={classNames({active:path == this.props.href})}>
       <Link href={this.props.href}>
         {icon}
         {this.renderTitle()}

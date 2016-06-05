@@ -14,6 +14,7 @@ import com.nimbusds.jwt.JWTClaimsSet;
 @Component("claimsSetTransformer")
 public class UserAuthenticationJwtClaimsSetTransformer implements AuthenticationJwtClaimsSetTransformer {
 
+  private static final String CLAIM_ID = "user_id";
   private static final String CLAIM_LAST_NAME = "lastName";
   private static final String CLAIM_FIRST_NAME = "firstName";
   private static final String CLAIM_IS_ADMIN = "isAdmin";
@@ -28,6 +29,7 @@ public class UserAuthenticationJwtClaimsSetTransformer implements Authentication
       .subject(user.getUsername())
       .issueTime(new Date(now))
       .expirationTime(new Date(now + TOKEN_DURATION))
+      .claim(CLAIM_ID, user.getId())
       .claim(CLAIM_IS_ADMIN, user.isAdmin())
       .claim(CLAIM_FIRST_NAME, user.getFirstName())
       .claim(CLAIM_LAST_NAME, user.getLastName())
@@ -40,6 +42,7 @@ public class UserAuthenticationJwtClaimsSetTransformer implements Authentication
     user.setEmail(claimSet.getSubject());
 
     try {
+      user.setId(claimSet.getIntegerClaim(CLAIM_ID));
       user.setAdmin(claimSet.getBooleanClaim(CLAIM_IS_ADMIN));
       user.setFirstName(claimSet.getStringClaim(CLAIM_FIRST_NAME));
       user.setLastName(claimSet.getStringClaim(CLAIM_LAST_NAME));

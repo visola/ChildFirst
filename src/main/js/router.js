@@ -11,8 +11,8 @@ var originalRoute = Backbone.Router.prototype.route;
 
 HandlebarsHelpers.registerHelpers();
 
-let render = (component) => {
-  let element = React.createElement(component.default || component);
+let render = (component, props, children) => {
+  let element = React.createElement(component.default || component, props, children);
   ReactDOM.render(
     <Application>{element}</Application>,
     document.getElementById('container')
@@ -23,7 +23,14 @@ var Router = Backbone.Router.extend({
   routes : {
     "(/)" : "home",
     "logout(/)" : "logout",
-    "schools(/)" : "schools"
+    "schools(/)" : "schools",
+    "schools/:id(/)" : "editSchool"
+  },
+
+  editSchool: function (schoolId) {
+    require(["containers/school/Edit"], function (EditSchool) {
+      render(EditSchool, {schoolId});
+    });
   },
 
   home : function () {
