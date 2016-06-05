@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactUtils from 'ReactUtils';
 
 export default class Dropdown extends React.Component {
 
@@ -31,7 +32,9 @@ export default class Dropdown extends React.Component {
   }
 
   render () {
+    let links = ReactUtils.findPropInAllChildren(this, 'href');
     let classes = {
+      active: links.indexOf(window.location.pathname) >= 0,
       open: this.state.toggle,
       dropdown: true
     };
