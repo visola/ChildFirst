@@ -17,11 +17,6 @@ export default class List extends React.Component {
       .then(this.forceUpdate.bind(this, null));
   }
 
-  handleSchoolChanges () {
-    console.log(arguments);
-    this.forceUpdate();
-  }
-
   render () {
     return <div>
       <h2><I18n string="title_schools" /></h2>
