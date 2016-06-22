@@ -46,4 +46,30 @@
     </createTable>
   </changeSet>
 
+  <changeSet id="Create branch table" author="visola">
+    <createTable tableName="branch">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="name" type="varchar(250)">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_by" type="int">
+        <constraints nullable="false" foreignKeyName="branch_created_by" referencedTableName="user" referencedColumnNames="id"/>
+      </column>
+      <column name="created" type="datetime">
+        <constraints nullable="false" />
+      </column>
+      <column name="updated_by" type="int">
+        <constraints nullable="false" foreignKeyName="branch_updated_by" referencedTableName="user" referencedColumnNames="id"/>
+      </column>
+      <column name="updated" type="datetime">
+        <constraints nullable="false" />
+      </column>
+      <column name="school_id" type="int">
+        <constraints nullable="false" foreignKeyName="branch_school" referencedTableName="school" referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+
 </databaseChangeLog>

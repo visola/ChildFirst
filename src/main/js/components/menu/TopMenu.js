@@ -44,6 +44,7 @@ export default class TopMenu extends React.Component {
   renderMenu() {
     return <ul className="nav navbar-nav">
       {this.renderAdminMenu()}
+      {this.renderSchoolMenu()}
     </ul>;
   }
 
@@ -55,6 +56,14 @@ export default class TopMenu extends React.Component {
         </DropdownMenu>
       </Dropdown>;
     }
+  }
+
+  renderSchoolMenu() {
+    return <Dropdown title="School">
+      <DropdownMenu>
+        <DropdownItem href="/branches" titleKey="label_branches" />
+      </DropdownMenu>
+    </Dropdown>;
   }
 
 }
