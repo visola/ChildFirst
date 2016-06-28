@@ -3,6 +3,10 @@ import React from 'react';
 
 export default class FormGroup extends React.Component {
 
+  static defaultProps = {
+    shouldRenderLabelBefore: true
+  }
+
   render () {
     if (this.props.shouldRenderLabelBefore) {
       return this.renderLabelBeforeChildren();
