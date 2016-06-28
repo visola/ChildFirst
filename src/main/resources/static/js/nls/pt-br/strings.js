@@ -1,5 +1,6 @@
 define({
   "button_create_new": "Nova",
+  "edit_branch" : "Editando Filial: {{name}}",
   "edit_school" : "Editando Escola: {{name}}",
   "hello" : "Oi {{name}}!",
   "label_branches" : "Filiais",

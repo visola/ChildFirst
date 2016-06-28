@@ -1,5 +1,6 @@
 define({
   "button_create_new": "New",
+  "edit_branch" : "Editing Branch: {{name}}",
   "edit_school" : "Editing School: {{name}}",
   "hello": "Hi {{coalesce name 'there'}}!",
   "label_branches" : "Branches",
