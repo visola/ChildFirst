@@ -30,14 +30,12 @@ var Router = Backbone.Router.extend({
   },
 
   branches: function () {
-    console.log('branches');
     require(["containers/branch/List"], function (BranchList) {
       render(BranchList);
     });
   },
 
   editBranch: function (branchId) {
-    console.log(branchId);
     require(["containers/branch/Edit"], function (EditBranch) {
       render(EditBranch, {branchId});
     });
