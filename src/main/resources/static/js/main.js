@@ -6,6 +6,7 @@ require.config({
     "underscore" : "https://cdn.jsdelivr.net/lodash/4.7.0/lodash.min",
 
     "backbone": "https://cdn.jsdelivr.net/backbonejs/1.3.2/backbone-min",
+    "babel-polyfill": "lib/polyfill",
     "classnames": "lib/classnames",
     "handlebars" : "https://cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.amd.min",
     "hbars" : "lib/hbars",

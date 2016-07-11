@@ -3,6 +3,7 @@ package org.visola.childfirst.school.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.visola.childfirst.auth.model.User;
+import org.visola.childfirst.exception.ResourceNotFoundException;
 import org.visola.childfirst.school.model.School;
 import org.visola.childfirst.school.repository.SchoolRepository;
 
@@ -31,20 +32,21 @@ public class SchoolService {
       school = new School();
     }
 
-    if (school.getId() != null) {
-      School loadedSchool = schoolRepository.findOne(school.getId());
-      if (loadedSchool != null) {
-        school.setCreated(loadedSchool.getCreated());
-        school.setCreatedBy(loadedSchool.getCreatedBy());
-      }
-    }
+    Calendar now = Calendar.getInstance();
 
-    if (school.getCreated() == null) {
-      school.setCreated(Calendar.getInstance());
+    if (school.getId() == null) {
+      school.setCreated(now);
       school.setCreatedBy(user.getId());
+    } else {
+      School loadedSchool = schoolRepository.findOne(school.getId());
+      if (loadedSchool == null) {
+        throw new ResourceNotFoundException("School with ID " + school.getId() + " not found.");
+      }
+      school.setCreated(loadedSchool.getCreated());
+      school.setCreatedBy(loadedSchool.getCreatedBy());
     }
 
-    school.setUpdated(Calendar.getInstance());
+    school.setUpdated(now);
     school.setUpdatedBy(user.getId());
 
     return schoolRepository.save(school);

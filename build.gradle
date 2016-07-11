@@ -37,6 +37,7 @@ sourceSets {
   main {
     resources {
       srcDir "${buildDir}/node"
+      srcDir "${buildDir}/node_modules"
     }
   }
 }
@@ -45,7 +46,13 @@ bootRun {
   addResources = false
 }
 
+task copyNodeModules(type: Copy) {
+  from "node_modules/babel-polyfill/dist/polyfill.js"
+  into "${buildDir}/node_modules/static/js/lib"
+}
+
 task javaScriptTranspile (type: NpmTask) {
+  dependsOn copyNodeModules
   args = ['run', 'build']
   inputs.dir file("src/main/js")
   outputs.dir file("${buildDir}/node")

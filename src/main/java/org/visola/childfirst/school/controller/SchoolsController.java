@@ -34,6 +34,7 @@ public class SchoolsController {
   }
 
   @RequestMapping(method=RequestMethod.PUT, value="/{id}")
+  @ResponseBody
   public School updateSchool(@RequestBody School school, @AuthenticationPrincipal User user) {
     return schoolService.save(school, user);
   }

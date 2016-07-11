@@ -23,8 +23,22 @@ var Router = Backbone.Router.extend({
   routes : {
     "(/)" : "home",
     "logout(/)" : "logout",
+    "branches(/)" : "branches",
+    "branches/:id(/)" : "editBranch",
     "schools(/)" : "schools",
     "schools/:id(/)" : "editSchool"
+  },
+
+  branches: function () {
+    require(["containers/branch/List"], function (BranchList) {
+      render(BranchList);
+    });
+  },
+
+  editBranch: function (branchId) {
+    require(["containers/branch/Edit"], function (EditBranch) {
+      render(EditBranch, {branchId});
+    });
   },
 
   editSchool: function (schoolId) {

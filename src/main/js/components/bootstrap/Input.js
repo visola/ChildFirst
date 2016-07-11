@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 
+import FormGroup from 'components/bootstrap/FormGroup';
+
 export default class Input extends React.Component {
 
   state = {
@@ -32,19 +34,11 @@ export default class Input extends React.Component {
   }
 
   render () {
-    if (this.isToggleButton()) {
-      return this.renderCheckboxOrRadio();
-    } else {
-      return this.renderOtherTypes();
-    }
-  }
-
-  renderCheckboxOrRadio() {
-    return <div className="form-group">
-      <label for={this.props.name}>
-        {this.renderInput(false)} {this.props.label}
-      </label>
-    </div>;
+    return <FormGroup name={this.props.name}
+      label={this.props.label}
+      shouldRenderLabelBefore={!this.isToggleButton()}>
+      {this.renderInput(!this.isToggleButton())}
+    </FormGroup>
   }
 
   renderInput(formControl = true) {
@@ -62,13 +56,6 @@ export default class Input extends React.Component {
       onChange={this.handleChange.bind(this)}
       value={this.state.value || ''}
     />;
-  }
-
-  renderOtherTypes() {
-    return <div className="form-group">
-      <label for={this.props.name}>{this.props.label}</label>
-      {this.renderInput()}
-    </div>;
   }
 
 }
