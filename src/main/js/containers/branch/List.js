@@ -28,6 +28,7 @@ export default class List extends React.Component {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>School</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +37,7 @@ export default class List extends React.Component {
             return <tr key={branch.id}>
               <td><Link href={path}>{branch.id}</Link></td>
               <td>{branch.get('name')}</td>
+              <td>{branch.get('school').name}</td>
             </tr>;
           })}
         </tbody>

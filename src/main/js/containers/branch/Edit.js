@@ -52,6 +52,7 @@ export default class Edit extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault();
+    this.state.branch.set('school', {id: this.state.schoolId});
     this.state.branch.save({wait:true})
       .then(this.handleLoaded.bind(this));;
   }
