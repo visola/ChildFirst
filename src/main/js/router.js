@@ -26,7 +26,8 @@ var Router = Backbone.Router.extend({
     "branches(/)" : "branches",
     "branches/:id(/)" : "editBranch",
     "schools(/)" : "schools",
-    "schools/:id(/)" : "editSchool"
+    "schools/:id(/)" : "editSchool",
+    "users(/)" : "users"
   },
 
   branches: function () {
@@ -77,7 +78,13 @@ var Router = Backbone.Router.extend({
     } else {
       this.login();
     }
-  }
+  },
+
+  users: function () {
+    require(["containers/user/List"], function (UserList) {
+      render(UserList);
+    });
+  },
 });
 
 export default new Router();

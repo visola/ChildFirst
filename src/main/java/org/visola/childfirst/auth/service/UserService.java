@@ -26,6 +26,10 @@ public class UserService implements UserDetailsService {
         .orElseThrow(() -> new UsernameNotFoundException("User not found with email: "+username));
   }
 
+  public Iterable<User> findAll() {
+    return userRepository.findAll();
+  }
+
   public Optional<User> findUser(String email) {
     return userRepository.findByEmail(email);
   }

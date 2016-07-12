@@ -53,6 +53,7 @@ export default class TopMenu extends React.Component {
       return <Dropdown title="Administration">
         <DropdownMenu>
           <DropdownItem href="/schools" titleKey="label_schools" />
+          <DropdownItem href="/users" titleKey="label_users" />
         </DropdownMenu>
       </Dropdown>;
     }

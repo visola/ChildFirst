@@ -28,6 +28,10 @@ public class User implements UserDetails {
   private Calendar expiresOn;
   private Calendar lockedOn;
   private Calendar disabled;
+  private Calendar created;
+  private Integer createdBy;
+  private Calendar updated;
+  private Integer updatedBy;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
