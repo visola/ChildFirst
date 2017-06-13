@@ -9,15 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.visola.childfirst.auth.model.User;
-import org.visola.childfirst.exception.ResourceNotFoundException;
 import org.visola.childfirst.school.model.Branch;
 import org.visola.childfirst.school.model.School;
 import org.visola.childfirst.school.service.BranchService;
 import org.visola.childfirst.school.service.SchoolService;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 @RequestMapping("${api.base.path}/branches")
 @RestController
