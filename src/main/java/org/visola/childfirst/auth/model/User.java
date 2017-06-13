@@ -132,4 +132,36 @@ public class User implements UserDetails {
     this.lockedOn = lockedOn;
   }
 
+  public Calendar getCreated() {
+    return created;
+  }
+
+  public void setCreated(Calendar created) {
+    this.created = created;
+  }
+
+  public Integer getCreatedBy() {
+    return createdBy;
+  }
+
+  public void setCreatedBy(Integer createdBy) {
+    this.createdBy = createdBy;
+  }
+
+  public Calendar getUpdated() {
+    return updated;
+  }
+
+  public void setUpdated(Calendar updated) {
+    this.updated = updated;
+  }
+
+  public Integer getUpdatedBy() {
+    return updatedBy;
+  }
+
+  public void setUpdatedBy(Integer updatedBy) {
+    this.updatedBy = updatedBy;
+  }
+
 }

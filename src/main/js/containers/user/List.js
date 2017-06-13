@@ -27,6 +27,7 @@ export default class List extends React.Component {
         <thead>
           <tr>
             <th>ID</th>
+            <th>Email</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Is Admin</th>
@@ -37,6 +38,7 @@ export default class List extends React.Component {
             let path = `/users/${user.id}`;
             return <tr key={user.id}>
               <td><Link href={path}>{user.id}</Link></td>
+              <td>{user.get('email')}</td>
               <td>{user.get('firstName')}</td>
               <td>{user.get('lastName')}</td>
               <td>{user.get('admin') === true ? 'Yes' : 'No'}</td>
