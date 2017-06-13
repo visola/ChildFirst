@@ -72,4 +72,17 @@
     </createTable>
   </changeSet>
 
+  <changeSet id="Add created and updated fields to User" author="visola">
+    <addColumn tableName="user">
+      <column name="created_by" type="int" />
+      <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+        <constraints nullable="false" />
+      </column>
+      <column name="updated_by" type="int" />
+      <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+        <constraints nullable="false" />
+      </column>
+    </addColumn>
+  </changeSet>
+
 </databaseChangeLog>

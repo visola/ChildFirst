@@ -28,6 +28,10 @@ public class User implements UserDetails {
   private Calendar expiresOn;
   private Calendar lockedOn;
   private Calendar disabled;
+  private Calendar created;
+  private Integer createdBy;
+  private Calendar updated;
+  private Integer updatedBy;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -126,6 +130,38 @@ public class User implements UserDetails {
 
   public void setLockedOn(Calendar lockedOn) {
     this.lockedOn = lockedOn;
+  }
+
+  public Calendar getCreated() {
+    return created;
+  }
+
+  public void setCreated(Calendar created) {
+    this.created = created;
+  }
+
+  public Integer getCreatedBy() {
+    return createdBy;
+  }
+
+  public void setCreatedBy(Integer createdBy) {
+    this.createdBy = createdBy;
+  }
+
+  public Calendar getUpdated() {
+    return updated;
+  }
+
+  public void setUpdated(Calendar updated) {
+    this.updated = updated;
+  }
+
+  public Integer getUpdatedBy() {
+    return updatedBy;
+  }
+
+  public void setUpdatedBy(Integer updatedBy) {
+    this.updatedBy = updatedBy;
   }
 
 }

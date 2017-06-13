@@ -1,5 +1,6 @@
 package org.visola.childfirst.auth.service;
 
+import java.util.Calendar;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,14 @@ public class UserService implements UserDetailsService {
         .orElseThrow(() -> new UsernameNotFoundException("User not found with email: "+username));
   }
 
+  public Iterable<User> findAll() {
+    return userRepository.findAll();
+  }
+
+  public User findById(Integer id) {
+    return userRepository.findOne(id);
+  }
+
   public Optional<User> findUser(String email) {
     return userRepository.findByEmail(email);
   }
@@ -35,6 +44,20 @@ public class UserService implements UserDetailsService {
     user.setEmail(email);
 
     return userRepository.save(user);
+  }
+
+  public User save(User toSave, User author) {
+    if (toSave.getId() == null) {
+      toSave.setCreated(Calendar.getInstance());
+      toSave.setCreatedBy(author.getId());
+    } else {
+      User loaded = userRepository.findOne(toSave.getId());
+      toSave.setCreatedBy(loaded.getCreatedBy());
+      toSave.setCreated(loaded.getCreated());
+    }
+    toSave.setUpdated(Calendar.getInstance());
+    toSave.setUpdatedBy(author.getId());
+    return userRepository.save(toSave);
   }
 
 }
