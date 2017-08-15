@@ -15,13 +15,14 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     // All resources go to where they should go
     registry
-      .addResourceHandler("/**/*.css", "/**/*.html", "**/*.jade", "/**/*.js", "/**/*.jsx", "/**/*.ttf", "/**/*.woff", "/**/*.woff2")
+      .addResourceHandler("/**/*.css", "/**/*.html", "/**/*.js", "/**/*.ttf", "/**/*.woff", "/**/*.woff2")
       .addResourceLocations("classpath:/static/");
+
 
     // Anything else, goes to index.html
     registry
       .addResourceHandler("/", "/**")
-      .addResourceLocations("classpath:/static/index.html").resourceChain(true)
+      .addResourceLocations("classpath:/static/index.html").resourceChain(false)
       .addResolver(new PathResourceResolver() {
         @Override
         protected Resource getResource(String resourcePath, Resource location) throws IOException {

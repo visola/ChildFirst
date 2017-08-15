@@ -1,4 +1,4 @@
-import I18n from 'components/I18n';
+import I18n from '../components/I18n';
 import React from 'react';
 
 export default class Login extends React.Component {

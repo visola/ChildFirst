@@ -1,12 +1,12 @@
 import Handlebars from 'handlebars';
 import React from 'react';
-import Strings from 'i18n!nls/strings';
+import dictionary from '../i18n/dictionary';
 
 export default class I18n extends React.Component {
 
   render() {
     let { string, ...props } = this.props;
-    let templateString = Strings[string];
+    let templateString = dictionary.get(string);
     if (!templateString) {
       return <i18n>{`[!!${string}!!]`}</i18n>;
     }
